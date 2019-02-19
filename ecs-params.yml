@@ -1,0 +1,22 @@
+version: 1
+task_definition:
+  ecs_network_mode: awsvpc # required for Fargate
+  task_execution_role: arn:aws:iam::067767846360:role/ecsTaskExecutionRole # required for Fargate
+  task_size:
+    cpu_limit: 512 # required for Fargate
+    mem_limit: 2048 # required for Fargate
+  services:
+    simple-node-app:
+        cpu_share: 256
+        mem_limit: 1.0GB
+run_params:
+  # network config required for Fargate
+  # ansible uses the config stored in vars.staging.yml but this config is used for testing locally with ecs-cli
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-0273d129be36ca6d3
+        - subnet-00007223814e5d5cf
+      security_groups:
+        - sg-00debe99f6a060859
+      assign_public_ip: DISABLED
