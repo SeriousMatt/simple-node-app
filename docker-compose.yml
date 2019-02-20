@@ -3,8 +3,8 @@ services:
   simple-node-app:
     image: 067767846360.dkr.ecr.us-east-1.amazonaws.com/simple-node-app:latest
     command: server
-    ports:
-      - "8080:8080" # dynamic ports not supported on Fargate
+    # ports:
+    #   - "8080:8080" # dynamic ports not supported on Fargate
     # encrypted secrets from AWS SSM Parameter Store
     # env_file:
     #   - stage.env
